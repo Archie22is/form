@@ -1,7 +1,9 @@
-** Features **
+# PHPMailer Form
+
+## Features
 * Google Recaptcha
 * Send mail using PHPMailer
 
-** TODO **  
+## TODO  
 * File upload
 * Save to database
