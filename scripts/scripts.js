@@ -3,7 +3,7 @@ var site = {
 	init: function() {
 
 		$('#contact-form button').click(function() {
-			$('#contact-form .loading').addClass('show-loader');
+			$('#contact-form .loader').addClass('show-loader');
 		});
 
 	}
