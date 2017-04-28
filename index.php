@@ -7,7 +7,7 @@
 	</head>
 	<body>
 		<?php include_once 'config.php' ?>
-		<form id="contact-form" method="post" action="form/send.php">
+		<form id="contact-form" method="post" action="form/send.php" enctype="multipart/form-data">
 			<fieldset>
 				<label>Name</label>
 				<input type="text" name="name" class="name" placeholder="Your full name" />
@@ -19,6 +19,10 @@
 			<fieldset>
 				<label>Message</label>
 				<textarea name="message" class="message" placeholder="Enter your message"></textarea>
+			</fieldset>
+			<fieldset>
+				<label>File Upload</label>
+				<input type="file" name="uploaded_file" id="uploaded_file" />
 			</fieldset>
 			<fieldset>
 				<div class="g-recaptcha" data-sitekey="<?php echo $recaptcha_site_key; ?>"></div>
