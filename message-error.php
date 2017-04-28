@@ -10,7 +10,7 @@
 		<?php if ($error == '1') {
 			echo '<p>You have not passed the "I\'m not a robot" test. Please go back and make sure you ticked the box.</p>';
 		} else {
-			echo '<p>We are very sorry but something seems to have gone wrong. Please try again. or contact us at chrissonia@tiscali.co.uk</p>';
+			echo '<p>We are very sorry but something seems to have gone wrong. Please try again. or contact us at ' . $mail_to_email . '</p>';
 		} ?>
 	</body>
 </html>
