@@ -23,7 +23,7 @@
 			$body .= '<strong>Name:</strong> ' . $name . '<br>';
 			$body .= '<strong>Email:</strong> ' . $email . '<br>';
 			$body .= '<strong>Message:</strong><br> ' . $message . '<br>';
-			$body .= '</p></td></tr></table> </td></tr></table> </td></tr></table> </td></tr></table> <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;-premailer-width: 570px;-premailer-cellpadding: 0;-premailer-cellspacing: 0;text-align: center;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td class="content-cell" style="word-break: break-word;padding: 35px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <p style="line-height: 1.5em;text-align: left;margin-top: 0;color: #AEAEAE;font-size: 16px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"><a href="" style="color: #3869D4;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;">Email Sent by </a></p></td></tr></table> </td></tr></table> </body></html>';
+			$body .= '</p></td></tr></table> </td></tr></table> </td></tr></table> </td></tr></table> <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;-premailer-width: 570px;-premailer-cellpadding: 0;-premailer-cellspacing: 0;text-align: center;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td class="content-cell" style="word-break: break-word;padding: 35px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <p style="line-height: 1.5em;text-align: left;margin-top: 0;color: #AEAEAE;font-size: 16px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"><a href="http://matthewjrallen.com" style="color: #3869D4;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;">Email Sent by Matt</a></p></td></tr></table> </td></tr></table> </body></html>';
 
 			// Require PHPMailer
 			require('../lib/PHPMailer-5.2.23/PHPMailerAutoload.php');
@@ -34,12 +34,12 @@
 			$mail->IsSMTP();
 
 			// Specifiy mailserver details
-			$mail->Host = '';
-			$mail->SMTPAuth = ;
-			$mail->SMTPSecure = '';
-			$mail->Port = ;
-			$mail->Username = '';
-			$mail->Password = '';
+			$mail->Host = '' . $smtp_host . '';
+			$mail->SMTPAuth = $smtp_auth;
+			$mail->SMTPSecure = '' . $smtp_secure . '';
+			$mail->Port = $smtp_port;
+			$mail->Username = '' . $smtp_username . '';
+			$mail->Password = '' . $smtp_password . '';
 
 			// Debugging
 			if ($debug == '1') {
@@ -47,12 +47,12 @@
 			}
 
 			// Email settings
-			$mail->From = '';
-			$mail->FromName = '';
+			$mail->From = '' . $mail_from_email . '';
+			$mail->FromName = '' . $mail_from_name . '';
 			$mail->AddReplyTo($email,$name);
 
-			// below we want to set the email address we will be sending our email to. chrissonia@tiscali.co.uk
-			$mail->AddAddress('', '');
+			// below we want to set the email address we will be sending our email to
+			$mail->AddAddress('' . $mail_to_email . '', '' . $mail_to_name . '');
 
 			// set word wrap to 50 characters
 			$mail->WordWrap = 50;
@@ -60,7 +60,7 @@
 			// set email format to HTML
 			$mail->IsHTML(true);
 
-			$mail->Subject = '';
+			$mail->Subject = '' . $mail_subject . '';
 
 			// Set the message from the body at the top
 			$mail->Body = $body;

@@ -2,7 +2,8 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title></title>
+		<title>Form</title>
+		<script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
 	<body>
 		<?php include_once 'config.php' ?>

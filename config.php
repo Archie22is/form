@@ -20,7 +20,6 @@
 	$smtp_port = '465';
 	$smtp_username = '';
 	$smtp_password = '';
-	$smtp_ = '';
 
 	// Email settings
 	// -------------------------------------/
@@ -33,6 +32,6 @@
 	// Options
 	// -------------------------------------/
 	// Use this to turn on debugging options. 0 = Off - 1 = On
-	$debug = '1';
+	$debug = '0';
 
 ?>
