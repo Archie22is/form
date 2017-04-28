@@ -3,6 +3,7 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Form</title>
+		<link href="styles/main.css?v=1.0" rel="stylesheet" type="text/css" />
 		<script src='https://www.google.com/recaptcha/api.js'></script>
 	</head>
 	<body>
@@ -29,5 +30,7 @@
 			</fieldset>
 			<button type="submit">Send</button>
 		</form>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+		<script defer type="text/javascript" src="scripts/scripts.min.js?v=1.0"></script>
 	</body>
 </html>
