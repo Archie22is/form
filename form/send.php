@@ -19,8 +19,9 @@
 			$name = $_REQUEST['name'];
 			$email = $_REQUEST['email'];
 			$message = $_REQUEST['message'];
+			$date = date('y-m-d-H-i-s');
 
-			// File Upload - START (1 of 2)
+			// File Upload - START (1 of 3)
 			// -------------------------------------/
 			$domain = '' . $site_domain . '';
 
@@ -43,13 +44,14 @@
 				}
 
 				if(empty($errors)==true) {
-					$final_file_name = $email . '-' . date('y-m-d-H-i-s') . '.' . $file_ext;
+					$final_file_name = $email . '-' . $date . '.' . $file_ext;
 					move_uploaded_file($file_tmp,'uploads/'.$final_file_name); //The folder where you would like your file to be saved
+					$file_url = $domain . 'form/uploads/' . $final_file_name;
 				} else {
 					print_r($errors);
 				}
 			}
-			// File Upload - END (1 of 2)
+			// File Upload - END (1 of 3)
 			// -------------------------------------/
 
 			$body = '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"> <head> <meta name="viewport" content="width=device-width, initial-scale=1.0"> <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> <title>New career enquiry from website</title> </head> <body style="height: 100%;margin: 0;line-height: 1.4;background-color: #F2F4F6;color: #74787E;-webkit-text-size-adjust: none;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;width: 100% !important;"> <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;-premailer-width: 100%;-premailer-cellpadding: 0;-premailer-cellspacing: 0;background-color: #F2F4F6;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td align="center" style="word-break: break-word;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <table class="email-content" width="100%" cellpadding="0" cellspacing="0" style="width: 100%;margin: 0;padding: 0;-premailer-width: 100%;-premailer-cellpadding: 0;-premailer-cellspacing: 0;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td class="email-body" width="100%" cellpadding="0" cellspacing="0" style="word-break: break-word;width: 100%;margin: 0;padding: 0;-premailer-width: 100%;-premailer-cellpadding: 0;-premailer-cellspacing: 0;border-top: 1px solid #EDEFF2;border-bottom: 1px solid #EDEFF2;background-color: #FFFFFF;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <table class="email-body_inner" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;-premailer-width: 570px;-premailer-cellpadding: 0;-premailer-cellspacing: 0;background-color: #FFFFFF;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td class="content-cell" style="word-break: break-word;padding: 35px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <h1 style="margin-top: 0;color: #2F3133;font-size: 19px;font-weight: bold;text-align: left;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;">' . $site_name . '</h1> <br><h2 style="margin-top: 0;color: #2F3133;font-size: 16px;font-weight: bold;text-align: left;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;">Contact Form Message</h2> <table class="attributes" width="100%" cellpadding="0" cellspacing="0" style="margin: 0 0 21px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td class="attributes_content" style="word-break: break-word;background-color: #EDEFF2;padding: 16px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <table width="100%" cellpadding="0" cellspacing="0" style="font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td class="attributes_item" style="word-break: break-word;padding: 0;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"><p style="line-height: 1.5em;text-align: left;margin-top: 0;color: #74787E;font-size: 16px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;">';
@@ -60,6 +62,19 @@
 				$body .= '<strong>File:</strong> <a href="' . $domain . 'form/uploads/'.$final_file_name.'">Click to download</a>';
 			}
 			$body .= '</p></td></tr></table> </td></tr></table> </td></tr></table> </td></tr></table> <table class="email-footer" align="center" width="570" cellpadding="0" cellspacing="0" style="width: 570px;margin: 0 auto;padding: 0;-premailer-width: 570px;-premailer-cellpadding: 0;-premailer-cellspacing: 0;text-align: center;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <tr> <td class="content-cell" style="word-break: break-word;padding: 35px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"> <p style="line-height: 1.5em;text-align: left;margin-top: 0;color: #AEAEAE;font-size: 16px;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;"><a href="http://matthewjrallen.com" style="color: #3869D4;font-family: Arial, Helvetica, sans-serif;box-sizing: border-box;">Email Sent by Matt</a></p></td></tr></table> </td></tr></table> </body></html>';
+
+			// Save to database
+			// -------------------------------------/
+			mysql_connect( $db_host, $db_user, $db_pass) or die(mysql_error());
+			mysql_select_db($db_name);
+
+			// File Upload - START (2 of 3)
+			// -------------------------------------/
+			mysql_query("INSERT INTO `form_results` (name, email, message, file, date) VALUES ('$name', '$email', '$message', '$file_url', '$date') ")or die(mysql_error());
+			// File Upload - END (2 of 3)
+			// -------------------------------------/
+			// Uncomment below if no file upload
+			//mysql_query("INSERT INTO `form_results` (name, email, message, date) VALUES ('$name', '$email', '$message', '$date') ")or die(mysql_error());
 
 			// Require PHPMailer
 			require('../lib/PHPMailer-5.2.23/PHPMailerAutoload.php');
@@ -99,10 +114,10 @@
 			$mail->Subject = '' . $mail_subject . '';
 
 			// Set the message from the body at the top
-			// File Upload - START (2 of 2)
+			// File Upload - START (3 of 3)
 			// -------------------------------------/
 			$mail->addAttachment('uploads/'.$final_file_name);
-			// File Upload - END (2 of 2)
+			// File Upload - END (3 of 3)
 			// -------------------------------------/
 			$mail->Body = $body;
 			$mail->AltBody = $body;

@@ -29,9 +29,13 @@
 	$mail_to_name = '';
 	$mail_subject = '';
 
+	// Site Details
+	// -------------------------------------/
+	$site_name = 'Matt';
+	$site_domain = 'http://dev-test.s110646.gridserver.com/';
+
 	// Options
 	// -------------------------------------/
 	// Use this to turn on debugging options. 0 = Off - 1 = On
 	$debug = '0';
-
 ?>

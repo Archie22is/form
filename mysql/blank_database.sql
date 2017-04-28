@@ -1,0 +1,44 @@
+#
+# SQL Export
+# Created by Querious (1068)
+# Created: 28 April 2017 at 16:18:02 BST
+# Encoding: Unicode (UTF-8)
+#
+
+
+SET @PREVIOUS_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS;
+SET FOREIGN_KEY_CHECKS = 0;
+
+
+DROP TABLE IF EXISTS `form_results`;
+
+
+CREATE TABLE `form_results` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text,
+  `email` text,
+  `message` text,
+  `file` text,
+  `date` text,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+
+SET FOREIGN_KEY_CHECKS = @PREVIOUS_FOREIGN_KEY_CHECKS;
+
+
+SET @PREVIOUS_FOREIGN_KEY_CHECKS = @@FOREIGN_KEY_CHECKS;
+SET FOREIGN_KEY_CHECKS = 0;
+
+
+LOCK TABLES `form_results` WRITE;
+ALTER TABLE `form_results` DISABLE KEYS;
+ALTER TABLE `form_results` ENABLE KEYS;
+UNLOCK TABLES;
+
+
+
+
+SET FOREIGN_KEY_CHECKS = @PREVIOUS_FOREIGN_KEY_CHECKS;
