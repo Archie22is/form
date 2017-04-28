@@ -38,3 +38,7 @@ Thumbs.db
 ###########
 node_modules
 .sass-cache
+
+# Repo Specific #
+#################
+config.php
